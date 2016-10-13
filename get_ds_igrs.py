@@ -32,7 +32,7 @@ def get_ds_igrs(genbank_path, outpath, min_igr_length=50):
         first_gene_name = gene_list[0][0]
         intergene_seq = base_record.seq[:first_gene_left]
         igr_feature_location = FeatureLocation(0, first_gene_left, strand=None)
-        igr_feature_type = "dsIGR"
+        igr_feature_type = "misc_RNA"
         igr_feature = SeqFeature(igr_feature_location, type=igr_feature_type, strand=None)
         igr_feature.qualifiers["locus_tag"] = "start_IGR_" + first_gene_name
         base_record.features.append(igr_feature)
@@ -50,7 +50,7 @@ def get_ds_igrs(genbank_path, outpath, min_igr_length=50):
             #Create new features and add them to the genbank file
             intergene_seq = base_record.seq[base_gene_right:comparison_gene_left]
             igr_feature_location = FeatureLocation(base_gene_right, comparison_gene_left, strand=None)
-            igr_feature_type = "dsIGR"
+            igr_feature_type = "misc_RNA"
             igr_feature = SeqFeature(igr_feature_location, type=igr_feature_type, strand=None)
             igr_feature.qualifiers["locus_tag"] = base_gene_name + "_IGR_" + comparison_gene_name
             base_record.features.append(igr_feature)
@@ -76,7 +76,7 @@ def get_ds_igrs(genbank_path, outpath, min_igr_length=50):
         last_gene_name = gene_list[-1][0]
         intergene_seq = base_record.seq[last_gene_right:]
         igr_feature_location = FeatureLocation(last_gene_right, len(base_record.seq), strand=None)
-        igr_feature_type = "dsIGR"
+        igr_feature_type = "misc_RNA"
         igr_feature = SeqFeature(igr_feature_location, type=igr_feature_type, strand=None)
         igr_feature.qualifiers["locus_tag"] = last_gene_name + "_IGR_end"
         base_record.features.append(igr_feature)
